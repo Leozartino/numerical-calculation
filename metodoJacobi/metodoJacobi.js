@@ -3,12 +3,13 @@ const math = require('mathjs')
 function gaussJacobi(A, b, taxaDeErro, numeroMaxIteracoes) {
 	let elementoIncognita = [];
 	let x = [];
+	let chuteInicial = [7/10, -8/5, 6/10];
 	for (let k = 0; k < b.length; k++)
 	{
 		elementoIncognita[k] = 0; //Math.floor((Math.random() * 10000) + 1);
 	}
-
-
+	
+	
 	let contadorDeIteracoes = 0;
 	let continuar = true;
 
@@ -32,11 +33,10 @@ function gaussJacobi(A, b, taxaDeErro, numeroMaxIteracoes) {
     return elementoIncognita;
 }
 
-let matrizA = [[6,2,3],[2,8,0],[4,2,10]];
-let vetorB = [-2, 4, 3];
+let matrizA = [[8,1,-1],[1,-7,2],[2,1,9]];
+let vetorB = [8, -4, 12];
 let taxaDeErro = 0.001;
-let numeroMaxIteracoes = 1000;
-let resolucao = gaussJacobi(matrizA, vetorB, taxaDeErro, numeroMaxIteracoes)
+let numeroMaxIteracoes = 100000;
 
 console.log('\nSolução:\n');
 console.log(gaussJacobi(matrizA, vetorB, taxaDeErro, numeroMaxIteracoes))
