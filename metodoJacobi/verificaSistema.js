@@ -7,9 +7,10 @@ function verificaSistemaLinear(matriz, vetorFinal, vetorB) {
       if (j === matriz.length - 1) {
         if (
           Math.trunc(equacaoSoma) != vetorB[i] &&
-          Math.ceil(equacaoSoma) != vetorB[i]
+          Math.round(equacaoSoma) != vetorB[i]
         ) {
-          return `${Math.ceil(equacaoSoma)} ou ${Math.trunc(
+          console.log(Math.round(equacaoSoma));
+          return `${Math.round(equacaoSoma)} ou ${Math.trunc(
             equacaoSoma
           )} é diferente de ${vetorB[i]}. Logo a matriz não convergiu /:`;
         } else {

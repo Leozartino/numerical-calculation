@@ -1,43 +1,57 @@
 const math = require("mathjs");
 const verificaSistema = require("./verificaSistema");
 const verificaSistemaLinear = verificaSistema.verificaSistemaLinear;
+const diagonalDominante = require("./diagonalDominante");
+const diagonalD = diagonalDominante.diagonalD;
 
-function gaussJacobi(A, b, taxaDeErro, numeroMaxIteracoes) {
-  let elementoIncognita = [];
-  let x = [];
-  let chuteInicial = [7 / 10, -8 / 5, 6 / 10];
+function gaussJacobi(A, b, taxaDeErro, numeroMaxIteracoes, chuteInicial) {
+  console.log(diagonalD(A));
+
+  let solucaoAnterior = [];
+  let solucaoAtual = [];
   for (let k = 0; k < b.length; k++) {
-    elementoIncognita[k] = 0; //Math.floor((Math.random() * 10000) + 1);
+    solucaoAnterior[k] = chuteInicial[k]; //Math.floor((Math.random() * 10000) + 1);
   }
 
   let contadorDeIteracoes = 0;
-  let continuar = true;
+  let criterioDeParada = false;
 
-  while (continuar && contadorDeIteracoes < numeroMaxIteracoes) {
+  while (
+    criterioDeParada === false &&
+    contadorDeIteracoes < numeroMaxIteracoes
+  ) {
     for (let i = 0; i < b.length; i++) {
-      soma = 0;
+      let soma = 0;
       for (let j = 0; j < b.length; j++) {
         if (j != i) {
-          soma = soma + (A[i][j] * elementoIncognita[j]) / A[i][i];
+          soma = soma + (A[i][j] * solucaoAnterior[j]) / A[i][i];
         }
-        x[i] = b[i] / A[i][i] - soma;
+        solucaoAtual[i] = b[i] / A[i][i] - soma;
       }
     }
-    if (Math.abs(math.norm(x) - math.norm(elementoIncognita)) < taxaDeErro) {
-      continuar = false;
+    console.log(Math.abs(math.norm(solucaoAtual) - math.norm(solucaoAnterior)));
+    if (
+      Math.abs(math.norm(solucaoAtual) - math.norm(solucaoAnterior)) <=
+      taxaDeErro
+    ) {
+      criterioDeParada = true;
     } else {
-      elementoIncognita = x.slice(0);
+      solucaoAnterior = solucaoAtual.slice(0);
     }
     contadorDeIteracoes += 1;
   }
-  return x;
+  return solucaoAtual;
 }
 
-let matrizA = [[8, 1, -1], [1, -7, 2], [2, 1, 9]];
-let vetorB = [8, -4, 12];
-let taxaDeErro = 0.0005;
+let matrizA = [[3, 2, -1], [1, 9, 2], [2, 8, 9]];
+let vetorB = [-9, -2, 2];
+let taxaDeErro = 0;
 let numeroMaxIteracoes = 100000;
-const solucao = gaussJacobi(matrizA, vetorB, taxaDeErro, numeroMaxIteracoes);
+const solucao = gaussJacobi(matrizA, vetorB, taxaDeErro, numeroMaxIteracoes, [
+  0,
+  0,
+  0
+]);
 
 console.log("\nO vetor solução da última iteração é:\n");
 console.log(solucao);
