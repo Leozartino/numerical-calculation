@@ -29,7 +29,7 @@ function gaussJacobi(A, b, taxaDeErro, numeroMaxIteracoes, chuteInicial) {
         solucaoAtual[i] = b[i] / A[i][i] - soma;
       }
     }
-    console.log(Math.abs(math.norm(solucaoAtual) - math.norm(solucaoAnterior)));
+    //console.log(Math.abs(math.norm(solucaoAtual) - math.norm(solucaoAnterior)));
     if (
       Math.abs(math.norm(solucaoAtual) - math.norm(solucaoAnterior)) <=
       taxaDeErro
