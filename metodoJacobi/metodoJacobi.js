@@ -49,15 +49,19 @@ function gaussJacobi(A, b, taxaDeErro, numeroMaxIteracoes, chuteInicial) {
   }
 }
 
-let matrizA = [[5, 3, -2], [10, 9, 2], [2, 6, 9]];
-let vetorB = ["5", -5, -6];
-let taxaDeErro = 0;
-let numeroMaxIteracoes = 100000;
-const solucao = gaussJacobi(matrizA, vetorB, taxaDeErro, numeroMaxIteracoes, [
-  0,
-  0,
-  0
-]);
+const matrizA = [[8, 1, -1], [1, -7, 2], [2, 1, 9]];
+const vetorB = [8, -4, 12];
+const taxaDeErro = 0.00033;
+const numeroMaxIteracoes = 1000;
+const chuteInicial = [0, 0, 0];
+
+const solucao = gaussJacobi(
+  matrizA,
+  vetorB,
+  taxaDeErro,
+  numeroMaxIteracoes,
+  chuteInicial
+);
 
 if (Array.isArray(solucao)) {
   console.log("\nO vetor solução da última iteração é:\n");

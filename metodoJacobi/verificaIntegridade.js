@@ -4,7 +4,9 @@ function verificaInte(A, b, taxaDeErro, numeroMaxIteracoes, chuteInicial) {
     for (let i = 0; i < A.length; i++) {
       for (let j = 0; j < A.length; j++) {
         if (typeof A[i][j] != "number") {
-          console.log(`O valor: ${A[i][j]} não é um valor válido!`);
+          console.log(
+            `O valor: ${A[i][j]} não é um valor válido para a posição na coluna`
+          );
           TesteCondicional = true;
         }
       }
@@ -17,7 +19,9 @@ function verificaInte(A, b, taxaDeErro, numeroMaxIteracoes, chuteInicial) {
   if (Array.isArray(b)) {
     for (let x = 0; x < A.length; x++) {
       if (typeof b[x] != "number") {
-        console.log(`O valor: ${b[x]} não é um valor válido!`);
+        console.log(
+          `O valor: ${b[x]} não é um valor válido para a posição na coluna!`
+        );
         TesteCondicional = true;
       }
     }
