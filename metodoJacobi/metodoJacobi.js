@@ -85,7 +85,7 @@ const matrizA = [
 ];
 const vetorB = [5, 8, 8, 11, 6];
 const taxaDeErro = 0.000001;
-const numeroMaxIteracoes = 100; //30 iterações para atingir
+const numeroMaxIteracoes = 20; //30 iterações para atingir
 const chuteInicial = [0, 0, 0, 0, 0];
 
 const solucao = gaussJacobi(
