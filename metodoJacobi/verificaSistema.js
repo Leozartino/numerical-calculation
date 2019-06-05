@@ -9,17 +9,17 @@ function verificaSistemaLinear(matriz, vetorFinal, vetorB) {
           Math.trunc(equacaoSoma) != vetorB[i] &&
           Math.round(equacaoSoma) != vetorB[i]
         ) {
-          console.log(Math.round(equacaoSoma));
-          return `${Math.round(equacaoSoma)} ou ${Math.trunc(
+          //console.log(Math.round(equacaoSoma));
+          return `A matriz diverge! :(\n${Math.round(
             equacaoSoma
-          )} é diferente de ${vetorB[i]}. Logo a matriz não convergiu /:`;
+          )} ou ${Math.trunc(equacaoSoma)} é diferente de ${vetorB[i]}.`;
         } else {
           vetorVerdade.push(equacaoSoma);
         }
       }
     }
   }
-  return `\nTodos os valores covergiram.\nO sistema linear após a substituição é aproximadamente:\n${vetorVerdade}\nO vetor b que foi dado é:\n${vetorB}`;
+  return `\nA matriz converge.\nO sistema linear após a substituição é aproximadamente:\n${vetorVerdade}\nO vetor b que foi dado é:\n${vetorB}`;
 }
 
 module.exports = { verificaSistemaLinear };

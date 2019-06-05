@@ -1,5 +1,5 @@
-function verificaInte(A, b, taxaDeErro, numeroMaxIteracoes, chuteInicial) {
-  let TesteCondicional = null;
+function verificaEntradas(A, b, taxaDeErro, numeroMaxIteracoes, chuteInicial) {
+  let erro = false;
   if (Array.isArray(A)) {
     for (let i = 0; i < A.length; i++) {
       for (let j = 0; j < A.length; j++) {
@@ -7,13 +7,13 @@ function verificaInte(A, b, taxaDeErro, numeroMaxIteracoes, chuteInicial) {
           console.log(
             `O valor: ${A[i][j]} não é um valor válido para a posição na coluna`
           );
-          TesteCondicional = true;
+          erro = true;
         }
       }
     }
   } else if (!Array.isArray(A)) {
     console.log("Erro! Informe um array válido!");
-    TesteCondicional = true;
+    erro = true;
   }
 
   if (Array.isArray(b)) {
@@ -22,44 +22,44 @@ function verificaInte(A, b, taxaDeErro, numeroMaxIteracoes, chuteInicial) {
         console.log(
           `O valor: ${b[x]} não é um valor válido para a posição na coluna!`
         );
-        TesteCondicional = true;
+        erro = true;
       }
     }
   } else if (!Array.isArray(b)) {
     console.log("Informe um array válido para o vetorB, por favor!");
-    TesteCondicional = true;
+    erro = true;
   }
 
   if (typeof taxaDeErro != "number") {
     console.log("Informe um válor númerico para taxaDeErro, por favor!");
-    TesteCondicional = true;
+    erro = true;
   }
 
   if (typeof numeroMaxIteracoes != "number") {
     console.log(
       "Informe um válor númerico para numeroMaxIteracoes, por favor!"
     );
-    TesteCondicional = true;
+    erro = true;
   }
 
   if (!Array.isArray(chuteInicial)) {
     console.log("Informe um array para chuteInicial, por favor!");
-    TesteCondicional = true;
+    erro = true;
   } else if (Array.isArray(chuteInicial)) {
     for (let y = 0; y < A.length; y++) {
       if (typeof chuteInicial[y] != "number") {
         console.log(`O valor: ${chuteInicial[y]} não é um valor válido!`);
-        TesteCondicional = true;
+        erro = true;
       }
     }
   }
-  if (TesteCondicional) {
+  //Se erro estiver setado como true, significa que pelo menos uma das condições verificadas entraram nas condicionais verificadas
+  if (erro) {
     return 0;
   }
-
-  return 1;
+  return 1; //Se retornar 1 significa que em nenhum momento as foi entrado na condicionais e por isso nao foi setado como true o Erro.
 }
 
 module.exports = {
-  verificaInte
+  verificaEntradas
 };
