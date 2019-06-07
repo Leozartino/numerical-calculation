@@ -53,7 +53,9 @@ function gaussJacobi(A, b, taxaDeErro, numeroMaxIteracoes, chuteInicial) {
 
       if (contadorDeIteracoes === numeroMaxIteracoes && !criterioDeParada) {
         //Numero de iterações chega ao maximo, mas criterio nao é satisfeito
-        console.log("Tolerância não atingida!");
+        console.log(
+          `Tolerância não atingida! Número de iterações realizadas: ${contadorDeIteracoes}`
+        );
       } else if (
         //Numero de iterações é atingido e cirterio de parada é satisfeito
         //Ou só quando o critério de parada é satisfeito independente do numero de iterações
@@ -63,8 +65,9 @@ function gaussJacobi(A, b, taxaDeErro, numeroMaxIteracoes, chuteInicial) {
         console.log(
           `Tolerância atingida: ${Math.abs(
             math.norm(solucaoAtual) - math.norm(solucaoAnterior)
-          )} com: ${contadorDeIteracoes} iterações feitas`
+          )} Número de iterações realizadas: ${contadorDeIteracoes}`
         );
+        console.log(verificaSistemaLinear(matrizA, solucaoAtual, vetorB));
       }
     }
 
@@ -76,17 +79,11 @@ function gaussJacobi(A, b, taxaDeErro, numeroMaxIteracoes, chuteInicial) {
   }
 }
 
-const matrizA = [
-  [3, 1, 0, 0, 0],
-  [1, 3, 1, 0, 0],
-  [0, 1, 3, 1, 0],
-  [0, 0, 1, 3, 1],
-  [0, 0, 0, 1, 3]
-];
-const vetorB = [5, 8, 8, 11, 6];
+const matrizA = [[5, 1, -1], [-1, -4, 1], [1, -2, -5]];
+const vetorB = [2, -10, 10];
 const taxaDeErro = 0.000001;
-const numeroMaxIteracoes = 20; //30 iterações para atingir
-const chuteInicial = [0, 0, 0, 0, 0];
+const numeroMaxIteracoes = 100;
+const chuteInicial = [0, 0, 0];
 
 const solucao = gaussJacobi(
   matrizA,
@@ -99,7 +96,6 @@ const solucao = gaussJacobi(
 if (Array.isArray(solucao)) {
   console.log("\nO vetor solução da última iteração é:\n");
   console.log(solucao);
-  console.log(verificaSistemaLinear(matrizA, solucao, vetorB));
 } else {
   console.log("Sem solução");
 }
@@ -121,11 +117,7 @@ const chuteInicial = [0, 0, 0, 0, 0];
 
 /* Teste 03:
 
-const matrizA = [[10, 2, 0, 0], [3, 10, 4, 0], [0, 1, 7, 5], [0, 0, 3, 4]];
-const vetorB = [3, 4, 5, 6];
-const taxaDeErro = 0.000001;
-const numeroMaxIteracoes = 100; //50 antigi
-const chuteInicial = [0, 0, 0, 0];
+
  */
 
 /* Teste 4:

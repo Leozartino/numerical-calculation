@@ -10,12 +10,12 @@ function diagonalD(A) {
       }
       if (j === tamanhoMatriz - 1) {
         if (!(Math.abs(A[i][i]) > somaAdjacente)) {
-          return `A Matriz NÃO tem diagonal dominante!\nLogo, pode ser ou não convergente.\n`;
+          return `\nA Matriz NÃO tem diagonal dominante!\nLogo, pode ser ou não convergente.\n`;
         }
       }
     }
   }
-  return "A Matriz tem diagonal dominante e necessariamente é convergente! ";
+  return "\nA Matriz tem diagonal dominante e necessariamente é convergente! ";
 }
 
 module.exports = { diagonalD };
