@@ -53,11 +53,11 @@ function verificaEntradas(A, b, taxaDeErro, numeroMaxIteracoes, chuteInicial) {
       }
     }
   }
-  //Se erro estiver setado como true, significa que pelo menos uma das condições verificadas entraram nas condicionais verificadas
+  //Se erro estiver setado como true, significa que pelo menos uma das condições verificadas são de entradas inválidas.
   if (erro) {
     return 0;
   }
-  return 1; //Se retornar 1 significa que em nenhum momento as foi entrado na condicionais e por isso nao foi setado como true o Erro.
+  return 1; //Se retornar 1, significa que em nenhum momento o erro foi setado como true e por isso as entradas são válidas.
 }
 
 module.exports = {

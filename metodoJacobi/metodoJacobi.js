@@ -5,6 +5,7 @@ const diagonalD = require("./diagonalDominante").diagonalD;
 const verificaEntradas = require("./verificaIntegridade").verificaEntradas;
 
 function gaussJacobi(A, b, taxaDeErro, numeroMaxIteracoes, chuteInicial) {
+  //Armazenado o retorno da função que verifica as entradas: 0 ou 1.
   const resp = verificaEntradas(
     A,
     b,
@@ -12,7 +13,8 @@ function gaussJacobi(A, b, taxaDeErro, numeroMaxIteracoes, chuteInicial) {
     numeroMaxIteracoes,
     chuteInicial
   );
-  //Deu bom!
+  // Se retornou 1: Deu bom! Todas as entradas são válidas e por isso é executado
+  //o método
   if (resp === 1) {
     console.log(diagonalD(A));
 
@@ -73,18 +75,21 @@ function gaussJacobi(A, b, taxaDeErro, numeroMaxIteracoes, chuteInicial) {
 
     return solucaoAtual;
 
-    //Deu ruim!
+    //Se retornou 0: Deu ruim! Pelo menos uma entrada dos parametros passados
+    //é invalida.
   } else if (resp === 0) {
     return resp;
   }
 }
 
+//Entradas do "usuário"
 const matrizA = [[5, 1, -1], [-1, -4, 1], [1, -2, -5]];
 const vetorB = [2, -10, 10];
 const taxaDeErro = 0.000001;
 const numeroMaxIteracoes = 100;
 const chuteInicial = [0, 0, 0];
 
+//Chamada da função que resolve pelo método de Jacobi
 const solucao = gaussJacobi(
   matrizA,
   vetorB,
@@ -93,10 +98,14 @@ const solucao = gaussJacobi(
   chuteInicial
 );
 
+//Veirifcando se o que foi retornado  é um array, se for mostra as mensagens
+//e resultados.
 if (Array.isArray(solucao)) {
   console.log("\nO vetor solução da última iteração é:\n");
   console.log(solucao);
-} else {
+}
+//Se o que for retornado não for um array, significa que deu erro nas entradas e etc.
+else {
   console.log("Sem solução");
 }
 
